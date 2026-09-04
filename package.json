@@ -1,0 +1,25 @@
+{
+  "name": "land-paisajismo-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sitio web de LAND · Arquitectura de paisaje · San Pedro Garza García",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.6",
+    "typescript": "^5.9.0"
+  },
+  "engines": { "node": ">=20.9" }
+}
