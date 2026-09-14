@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MediaFrame } from '@/components/MediaFrame'
 import { PeopleTabs } from '@/components/People'
-import { people, peopleLevels, studio } from '@/content/studio'
+import { people, peopleLevels, process, studio } from '@/content/studio'
 import { site } from '@/content/site'
 
 export const metadata: Metadata = {
@@ -20,6 +20,9 @@ export default function StudioPage() {
           <Link href="/enfoque#servicios" className="lnk">
             Servicios
           </Link>
+          <a href="#proceso" className="lnk">
+            Proceso
+          </a>
           <a href="#clientes" className="lnk">
             Clientes y colaboradores
           </a>
@@ -68,6 +71,30 @@ export default function StudioPage() {
               <li key={s}>{s}</li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section id="proceso" className="two grid container" aria-labelledby="proceso-h">
+        <div className="col-4">
+          <h2 id="proceso-h" className="t-1">
+            Proceso
+          </h2>
+          <p className="prose" style={{ marginTop: '1rem', fontSize: 'var(--t-body)' }}>
+            Cómo trabaja el estudio, de la primera reunión al seguimiento del jardín. Cada etapa termina con un entregable.
+          </p>
+        </div>
+        <div className="col-8">
+          <ol className="process">
+            {process.map((st) => (
+              <li key={st.title}>
+                <h3>{st.title}</h3>
+                <div>
+                  <p>{st.body}</p>
+                  <small>Entregable · {st.deliverable}</small>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

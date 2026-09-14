@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { filterGroups, optionLabel } from '@/content/projects'
 import type { MediaAsset } from '@/content/types'
 import { FROM_INDEX_KEY, cx } from '@/lib/utils'
+import { gridSizeFor, type GridSize } from '@/lib/media'
 import { MediaFrame } from './MediaFrame'
 
 export type ProjectCardData = {
@@ -16,7 +17,11 @@ export type ProjectCardData = {
   categories: string[]
   featured: boolean
   hero: MediaAsset
+  gridSize?: GridSize
 }
+
+/** Cadencia de la retícula de composición (manual v1.2): [L S] [M M] [S L] [M M]. */
+const CADENCE: GridSize[] = ['L', 'S', 'M', 'M', 'S', 'L', 'M', 'M']
 
 /** ProjectFilter + ProjectGrid + ProjectCard. El estado de filtros vive en la URL y sobrevive al regreso desde un proyecto. */
 export function ProjectsIndex({ projects }: { projects: ProjectCardData[] }) {
@@ -90,19 +95,31 @@ export function ProjectsIndex({ projects }: { projects: ProjectCardData[] }) {
           </p>
         )}
         {filtered.map((p, i) => (
-          <ProjectCard key={p.slug} project={p} variant={i < 2 && p.featured && !activeCount ? 'full' : (i % 2 === 0 ? 'a' : 'b')} />
+          <ProjectCard key={p.slug} project={p} size={p.gridSize ?? CADENCE[i % CADENCE.length]} />
         ))}
       </div>
     </>
   )
 }
 
-function ProjectCard({ project, variant }: { project: ProjectCardData; variant: 'full' | 'a' | 'b' }) {
+/** Relación por orientación del original: apaisado → 4:3 (S → 1:1); vertical → 4:5. Evita recortar renders apaisados en formato alto. */
+function ratioFor(size: GridSize, media: MediaAsset) {
+  const landscape = media.width >= media.height
+  if (landscape) return size === 'S' ? '1 / 1' : '4 / 3'
+  return '4 / 5'
+}
+const SIZES: Record<GridSize, string> = { L: '(min-width: 48rem) 66vw, 100vw', M: '(min-width: 48rem) 50vw, 100vw', S: '(min-width: 48rem) 33vw, 100vw' }
+
+function ProjectCard({ project, size }: { project: ProjectCardData; size: GridSize }) {
   const p = project
+  // Una imagen pequeña nunca ocupa una tarjeta L (regla 1.2×): se degrada al tamaño que su resolución permite.
+  const allowed = gridSizeFor(p.hero)
+  const rank: GridSize[] = ['S', 'M', 'L']
+  const s = rank.indexOf(size) > rank.indexOf(allowed) && !p.gridSize ? allowed : size
   return (
     <Link
       href={`/proyectos/${p.slug}`}
-      className={cx('card', `card--${variant}`)}
+      className={cx('card', `card--${s}`)}
       data-reveal=""
       onClick={() => {
         try {
@@ -110,12 +127,7 @@ function ProjectCard({ project, variant }: { project: ProjectCardData; variant: 
         } catch {}
       }}
     >
-      <MediaFrame
-        media={p.hero}
-        ratio={variant === 'full' ? '16 / 9' : '4 / 3'}
-        sizes={variant === 'full' ? '100vw' : '(min-width: 48rem) 50vw, 100vw'}
-        caption={false}
-      />
+      <MediaFrame media={p.hero} ratio={ratioFor(s, p.hero)} sizes={SIZES[s]} caption={false} parallax hoverPlay />
       <span className="card__body">
         <span className="card__title display">{p.title}</span>
         <span className="card__loc">{p.location}</span>

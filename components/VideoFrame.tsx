@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { MediaAsset } from '@/content/types'
 
 /** Video silenciado, en loop, playsInline, con poster, control de pausa y detención fuera del viewport. */
-export function VideoFrame({ media }: { media: MediaAsset }) {
+export function VideoFrame({ media, hoverPlay }: { media: MediaAsset; hoverPlay?: boolean }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   const userPaused = useRef(false)
@@ -15,8 +15,8 @@ export function VideoFrame({ media }: { media: MediaAsset }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const io = new IntersectionObserver(
       ([en]) => {
-        if (en.isIntersecting && !userPaused.current && !reduce) v.play().catch(() => {})
-        else v.pause()
+        if (en.isIntersecting && !userPaused.current && !reduce && !hoverPlay) v.play().catch(() => {})
+        else if (!en.isIntersecting) v.pause()
       },
       { threshold: 0.25 },
     )
@@ -30,7 +30,14 @@ export function VideoFrame({ media }: { media: MediaAsset }) {
       v.removeEventListener('play', onPlay)
       v.removeEventListener('pause', onPause)
     }
-  }, [])
+  }, [hoverPlay])
+
+  const onEnter = () => {
+    if (hoverPlay && !userPaused.current) ref.current?.play().catch(() => {})
+  }
+  const onLeave = () => {
+    if (hoverPlay) ref.current?.pause()
+  }
 
   const toggle = () => {
     const v = ref.current
@@ -46,7 +53,18 @@ export function VideoFrame({ media }: { media: MediaAsset }) {
 
   return (
     <>
-      <video ref={ref} src={media.src} poster={media.poster} muted loop playsInline preload="metadata" aria-label={media.alt} />
+      <video
+        ref={ref}
+        src={media.src}
+        poster={media.poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={media.alt}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+      />
       <button type="button" className="vctl" onClick={toggle} aria-pressed={!playing}>
         {playing ? 'Pausar' : 'Reproducir'}
       </button>

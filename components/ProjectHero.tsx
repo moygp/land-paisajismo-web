@@ -1,20 +1,11 @@
-import Image from 'next/image'
 import type { MediaAsset } from '@/content/types'
-import { focalStyle } from '@/lib/utils'
-import { VideoFrame } from './VideoFrame'
+import { MediaFrame } from './MediaFrame'
 
-export function ProjectHero({ title, media }: { title: string; media: MediaAsset }) {
+/** Apertura de ficha (v1.2): imagen grande a ancho de retícula, sin texto superpuesto; el título va debajo. */
+export function ProjectHero({ media }: { media: MediaAsset }) {
   return (
-    <section className="phero" data-header-theme="dark">
-      <div className="phero__media" style={focalStyle(media.focalPoint)}>
-        {media.type === 'video' ? <VideoFrame media={media} /> : <Image src={media.src} alt={media.alt} fill priority sizes="100vw" quality={82} />}
-      </div>
-      <h1 className="phero__title">{title}</h1>
-      {media.tag && (
-        <span className="frame__tag" aria-hidden="true">
-          {media.tag}
-        </span>
-      )}
+    <section className="phero" data-header-theme="light">
+      <MediaFrame media={{ ...media, caption: undefined }} sizes="(min-width: 48rem) calc(100vw - 3rem), 100vw" priority caption={false} />
     </section>
   )
 }

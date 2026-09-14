@@ -1,6 +1,6 @@
 # landpaisajismo.mx — sitio web de LAND
 
-Sitio original para **LAND · Arquitectura de paisaje** (San Pedro Garza García, N.L.), construido sobre el manual de identidad v1.1 y el portafolio 2026. Next.js 16 (App Router) + TypeScript, listo para desplegar en Vercel.
+Sitio original para **LAND · Arquitectura de paisaje** (San Pedro Garza García, N.L.), construido sobre el manual de identidad v1.2 (sep 2026) y el portafolio 2026. Next.js 16 (App Router) + TypeScript, listo para desplegar en Vercel.
 
 Estructura editorial inspirada en el brief «prompt maestro»: hero tipográfico, escenario de proyectos destacados controlado por scroll, índice filtrable, fichas con relato visual modular, cierre técnico y siguiente proyecto. Ningún texto, imagen, código ni recurso de la referencia analizada aparece en el resultado.
 
@@ -26,10 +26,10 @@ Requiere Node ≥ 20.9. No hay variables de entorno.
 | Ruta | Estado |
 | --- | --- |
 | `/` | Portada: intro de primera visita (una vez por sesión), hero tipográfico, escenario de cinco proyectos destacados, noticias (se activa al haber entradas), pie de página. |
-| `/proyectos` | Índice con filtros por Selección, Tipología, Alcance y Estado. Estado en la URL; se conserva al regresar. |
-| `/proyectos/[slug]` | Siete fichas publicadas. Hero, introducción en dos columnas, secuencia editorial, datos, siguiente proyecto. «Cerrar» cuando se abre desde el índice. |
+| `/proyectos` | Carrusel de destacados (avance cada 6 s, pausable, teclado) y retícula de composición L/M/S según la resolución de cada imagen. Filtros por Selección, Tipología, Alcance y Estado con estado en la URL. |
+| `/proyectos/[slug]` | Siete fichas publicadas. Imagen grande de apertura, título y párrafo descriptivo, secuencia editorial con tamaños ligados a la resolución (nunca más de 1.2× el ancho real), datos, siguiente proyecto. «Cerrar» cuando se abre desde el índice. |
 | `/enfoque` | Cuatro pilares (Clima, Agua, Obra, Tiempo), servicios y paleta vegetal recurrente. |
-| `/estudio` | Declaración, «LAND es / LAND no es», clientes y colaboradores, reconocimientos. Equipo oculto hasta tener contenido. |
+| `/estudio` | Declaración, «LAND es / LAND no es», proceso en seis etapas (borrador a validar por LAND), clientes y colaboradores, reconocimientos. Equipo oculto hasta tener contenido. |
 | `/estudio/equipo/[slug]` | Perfil de integrante. Se genera solo con datos en `content/studio.ts`. |
 | `/noticias`, `/noticias/[slug]` | Devuelven 404 mientras `content/news.ts` esté vacío. Al añadir una noticia aparecen la sección de portada, el índice y la ficha. |
 | `/privacidad`, `/terminos` | Textos base. Ver pendientes. |
@@ -59,9 +59,9 @@ Las imágenes actuales son **recortes de las páginas del portafolio PDF (1456 p
 
 ## Sistema visual
 
-Tokens en `app/globals.css` (`:root`), derivados del manual v1.1:
+Tokens en `app/globals.css` (`:root`), derivados del manual v1.2 (revisión de LAND del 14 sep 2026: fondo blanco, Corteza, hover verde, titulares en peso 500, composición por resolución):
 
-- **Color:** Caliza `#E8E9E3` (fondo por defecto, reemplaza al blanco), Sombra `#101A13` (sustituye al negro), Verde LAND `#337044` (solo como firma), Salvia `#A9B7A4` (acento sobre oscuro), Piedra `#9A9183` (texto secundario grande y líneas técnicas). Para texto secundario pequeño se usa `#4C544D` (Sombra al 72 %), porque Piedra sobre Caliza no alcanza AA por debajo de 24 px.
+- **Color:** Blanco `#FFFFFF` (fondo base), Sombra `#101A13` (texto y secciones de contraste), Verde LAND `#337044` (wordmark, foco y hover de todo elemento interactivo), Corteza `#6B7068` (texto secundario sobre blanco, 5.2:1), Caliza `#E8E9E3` (superficie secundaria: planos, placas claras), Salvia `#A9B7A4` (acento sobre oscuro), Piedra `#9A9183` (texto grande y líneas técnicas).
 - **Tipografía:** Archivo en su eje ancho (wdth 112 vía `font-stretch`, display, interletrado −0.035 em), Newsreader con eje óptico (texto; cursiva reservada a nombres botánicos), JetBrains Mono (datos y etiquetas, caja alta, +0.14 em). Servidas con `next/font/google`: se descargan una vez en el build y se auto-alojan; no hay peticiones a Google en runtime.
 - **Retícula:** 12 columnas (el manual pide doce en digital; la referencia usaba dieciséis). Margen exterior = 1 X del wordmark de cabecera (≈ 20–24 px), medianil 12/16 px.
 - **Línea de horizonte:** 1 px al 16 % sobre claro y 22 % sobre oscuro. Sin radios, sombras, degradados ni iconos. La única forma curva es el avatar circular (`app/icon.svg`).
@@ -71,7 +71,7 @@ Tokens en `app/globals.css` (`:root`), derivados del manual v1.1:
 ## Movimiento
 
 - Revelado de bloques por opacidad: 300 ms, retraso 120 ms.
-- Hover de imagen: `scale(1.03)`, 500 ms, `cubic-bezier(0.28, 1, 0.5, 1)`.
+- Hover de imagen: `scale(1.04)` + paralaje de hasta ±12 px que sigue al cursor, 600 ms; sin efecto en táctil ni con movimiento reducido. Todo texto interactivo pasa a Verde LAND en 150 ms.
 - Subrayados: 125 ms. Cambios de color: 300 ms, `cubic-bezier(0.4, 0, 0.2, 1)`.
 - Escenario de destacados: crossfade de 400 ms por scroll nativo; se montan solo el medio activo y el siguiente y el resto en reposo.
 - Menú móvil: 500 ms, Caliza al 70 % con `blur(15px)`.

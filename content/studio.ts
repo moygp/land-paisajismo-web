@@ -43,6 +43,16 @@ export const studio = {
   recognitions: [{ year: '2021', title: 'Torre Miravalle · proyecto ganador de concurso', projectSlug: 'torre-miravalle' }],
 }
 
+/** Proceso de trabajo en seis etapas (manual v1.2 §09). PENDIENTE LAND: validar o corregir el texto. */
+export const process = [
+  { title: 'Primera reunión', body: 'En el estudio o en el terreno. Se define el alcance, el presupuesto de referencia y si LAND es el equipo adecuado para el proyecto.', deliverable: 'Alcance y presupuesto de referencia' },
+  { title: 'Visita y levantamiento', body: 'Un día en el sitio: asoleamiento por área, suelo, escorrentía, arbolado existente y vistas. Se documenta con fotografía y medición.', deliverable: 'Levantamiento y análisis del sitio' },
+  { title: 'Anteproyecto', body: 'Planta de conjunto, paleta vegetal por condición de luz y referencias de materiales. Se presenta en el estudio y se ajusta con el cliente.', deliverable: 'Planta de conjunto y paleta vegetal' },
+  { title: 'Proyecto ejecutivo', body: 'Plano de plantación, riego por goteo, iluminación exterior y detalles de muros y jardineras. Lo que se dibuja es lo que se construye.', deliverable: 'Documentación constructiva completa' },
+  { title: 'Obra', body: 'El mismo estudio dirige la plantación. Cada árbol se ubica por su porte adulto y la piedra del sitio regresa como muro, escalera o patio.', deliverable: 'Jardín construido y entregado' },
+  { title: 'Seguimiento', body: 'Visitas después de la entrega para revisar riego, poda y adaptación. El proyecto se evalúa a diez años; la entrega es apenas el primer día.', deliverable: 'Visitas de seguimiento' },
+]
+
 /**
  * Equipo. Sin datos autorizados en los archivos entregados; la sección se oculta mientras la lista esté vacía.
  * Para publicar: nombre, cargo, nivel ('direccion' | 'equipo'), retrato vertical (3:4) y biografía breve.

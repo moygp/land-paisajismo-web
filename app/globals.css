@@ -1,22 +1,24 @@
 /* =====================================================================
    LAND · landpaisajismo.mx
-   Tokens derivados del Manual de identidad v1.1 (ago 2026).
+   Tokens derivados del Manual de identidad v1.2 (sep 2026): blanco base, Corteza, hover verde.
    Una sola estrategia de estilos: CSS global con variables. Sin Tailwind.
    ===================================================================== */
 
 :root {
   /* Color · corte de terreno (manual §04) */
-  --caliza: #e8e9e3;   /* fondo por defecto; reemplaza al blanco */
+  --caliza: #e8e9e3;   /* superficie secundaria: planos, placas claras, franjas (v1.2) */
   --sombra: #101a13;   /* sustituye al negro puro */
   --verde: #337044;    /* único verde de la marca */
   --salvia: #a9b7a4;   /* acento sobre oscuro; nunca texto pequeño */
   --piedra: #9a9183;   /* texto secundario grande, líneas técnicas */
-  --blanco: #ffffff;
+  --corteza: #6b7068;  /* texto secundario sobre blanco · 5.2:1 (v1.2) */
+  --blanco: #ffffff;   /* fondo base en pantalla (v1.2) */
 
   /* Roles */
-  --bg: var(--caliza);
+  --bg: var(--blanco);
+  --surface: var(--caliza);
   --fg: var(--sombra);
-  --fg-muted: #4c544d;               /* Sombra 72 % sobre Caliza · 6.5:1 */
+  --fg-muted: var(--corteza);
   --fg-soft: var(--piedra);          /* solo texto ≥ 24 px */
   --line: rgba(16, 26, 19, 0.16);    /* filete de horizonte sobre claro (manual §06) */
   --placa: rgba(16, 26, 19, 0.55);   /* placa sólida translúcida sobre fotografía */
@@ -26,7 +28,7 @@
   --font-text: var(--f-newsreader), Georgia, serif;
   --font-mono: var(--f-mono), ui-monospace, Menlo, monospace;
 
-  --t-hero: clamp(2.25rem, 4.8vw, 3.75rem);      /* 36 → 60 */
+  --t-hero: clamp(2.5rem, 5.4vw, 4.5rem);        /* 40 → 72 (v1.2) */
   --t-1: clamp(1.875rem, 3.4vw, 2.875rem);       /* 30 → 46 */
   --t-2: clamp(1.5rem, 2.4vw, 2rem);             /* 24 → 32 */
   --t-edit: clamp(1.125rem, 1.6vw, 1.5rem);      /* 18 → 24 */
@@ -34,7 +36,8 @@
   --t-body: 1.0625rem;                           /* 17 */
   --t-small: 0.9375rem;                          /* 15 */
   --t-mono: 0.6875rem;                           /* 11 */
-  --track-display: -0.035em;
+  --track-display: -0.02em;                      /* v1.2: más aire, peso 500 */
+  --t-hover: 150ms;
   --track-mono: 0.14em;
 
   /* Retícula (manual §06: doce columnas, margen mínimo 1 X del logotipo) */
@@ -122,7 +125,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--track-display);
   line-height: 1.05;
   margin: 0;
@@ -217,7 +220,7 @@ figure {
 
 .display {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--track-display);
   line-height: 1.05;
 }
@@ -262,11 +265,46 @@ figure {
   color: var(--fg-muted);
 }
 
-/* Enlace con subrayado fino animado (125 ms) */
+/* Enlace con subrayado fino animado (125 ms) y color verde en hover/foco (v1.2) */
 .lnk {
   position: relative;
   display: inline-block;
   padding-bottom: 0.1em;
+  transition: color var(--t-hover) var(--ease-std);
+}
+
+a:hover .lnk,
+a:focus-visible .lnk,
+button:hover .lnk,
+button:focus-visible .lnk,
+.lnk:hover,
+.nav a:hover,
+.nav a:focus-visible,
+.menu__list a:hover,
+.menu__list a:focus-visible,
+.card:hover .card__title,
+.card:focus-visible .card__title,
+.filters__option:hover,
+.filters__option:focus-visible,
+.pillars-nav a:hover,
+.pillars-nav a:focus-visible,
+.footer__col a:hover,
+.footer__col a:focus-visible,
+.list-lines a:hover,
+.list-lines a:focus-visible,
+.pnext:hover .pnext__body h2,
+.pnext:focus-visible .pnext__body h2,
+.doc__body a:hover {
+  color: var(--verde);
+}
+
+.nav a,
+.menu__list a,
+.card__title,
+.pillars-nav a,
+.footer__col a,
+.pnext__body h2 {
+  transition: color var(--t-hover) var(--ease-std);
 }
 .lnk::after {
   content: '';
@@ -374,7 +412,7 @@ figure {
   justify-content: space-between;
   padding-inline: var(--x);
   color: var(--sombra);
-  background: var(--caliza);
+  background: var(--blanco);
   transition: color var(--t-color) var(--ease-std), background-color var(--t-color) var(--ease-std);
 }
 
@@ -469,7 +507,7 @@ html[data-header='verde'] .header {
   flex-direction: column;
   justify-content: space-between;
   padding: calc(var(--header-h) + 2rem) var(--x) 2rem;
-  background: rgba(232, 233, 227, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(15px);
   color: var(--sombra);
@@ -514,7 +552,7 @@ html[data-header='verde'] .header {
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: var(--caliza);
+  background: var(--blanco);
   opacity: 0;
   pointer-events: none;
   transition: opacity 300ms var(--ease-std);
@@ -629,7 +667,25 @@ html[data-intro='1'] .intro {
   position: relative;
   overflow: hidden;
   aspect-ratio: var(--ar, 4 / 3);
-  background: var(--line);
+  background: var(--surface);
+}
+
+/* Paralaje de imagen (v1.2): escala 1.04 y desplazamiento que sigue al cursor. Solo con puntero fino. */
+.parallax {
+  position: absolute;
+  inset: 0;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.parallax img {
+  transition: none !important;
+  transform: none !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .parallax[data-hover='true'] {
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0) scale(1.04);
+  }
 }
 
 .frame__box img,
@@ -732,11 +788,11 @@ html[data-intro='1'] .intro {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-block: clamp(3rem, 8vh, 6rem);
+  padding-block: clamp(3.75rem, 10vh, 7.5rem);
 }
 
 .hero__title {
-  max-width: 20ch;
+  max-width: 18ch;
   font-size: var(--t-hero);
 }
 
@@ -938,20 +994,17 @@ html[data-intro='1'] .intro {
   }
 }
 
-/* ---------- Pie de página ---------- */
+/* ---------- Pie de página · bloque de contacto sobre blanco (v1.2) ---------- */
 
 .footer {
-  min-height: 90svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: clamp(3rem, 8vw, 6rem) var(--x) 1.5rem;
+  border-top: 1px solid var(--line);
 }
 
 .footer__mark {
-  width: min(70vw, 34rem);
+  width: min(60vw, 24rem);
   height: auto;
-  color: var(--caliza);
+  color: var(--verde);
 }
 
 .footer__tagline {
@@ -962,55 +1015,65 @@ html[data-intro='1'] .intro {
   color: var(--fg-muted);
 }
 
-.footer__cols {
+.contact {
   margin-top: clamp(3rem, 8vw, 6rem);
   display: grid;
-  gap: 2rem var(--gutter);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
 }
 
-@media (min-width: 48rem) {
-  .footer__cols {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.contact__row {
+  display: grid;
+  gap: 0.5rem var(--gutter);
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
 }
 
-@media (min-width: 64rem) {
-  .footer__cols {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-.footer__col a,
-.footer__col p {
-  overflow-wrap: anywhere;
-}
-
-.footer__col h2 {
+.contact__row h2 {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: var(--t-small);
   letter-spacing: -0.01em;
   color: var(--fg-muted);
-  margin-bottom: 0.75rem;
 }
 
-.footer__col p,
-.footer__col a {
+.contact__row p,
+.contact__row a {
   display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 2.2vw, 2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.contact__row a {
+  transition: color var(--t-hover) var(--ease-std);
+}
+
+.contact__row a:hover,
+.contact__row a:focus-visible {
+  color: var(--verde);
+}
+
+.contact__row small {
+  display: block;
+  margin-top: 0.35rem;
   font-family: var(--font-text);
   font-size: var(--t-body);
-  line-height: 1.45;
+  color: var(--fg-muted);
 }
 
-.footer__col a {
-  padding-block: 0.15rem;
+@media (min-width: 48rem) {
+  .contact__row {
+    grid-template-columns: 4fr 8fr;
+    align-items: start;
+  }
 }
 
 .footer__legal {
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
   padding-top: 1rem;
-  border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1170,56 +1233,74 @@ html[data-intro='1'] .intro {
   max-width: 52ch;
 }
 
+/* Retícula de composición (v1.2): L 8 col 4:3 · M 6 col 4:5 · S 4 col 1:1, cadencia [L S] [M M] [S L] [M M] */
 @media (min-width: 48rem) {
-  .card--full {
-    grid-column: 1 / -1;
+  .card--L {
+    grid-column: span 8;
   }
-  .card--a {
-    grid-column: 1 / 7;
+  .card--M {
+    grid-column: span 6;
   }
-  .card--b {
-    grid-column: 7 / -1;
-    margin-top: clamp(3rem, 8vw, 7rem);
+  .card--S {
+    grid-column: span 4;
+    align-self: end;
   }
-  .card--full .card__body {
+  .card--M:nth-child(even) {
+    margin-top: clamp(2rem, 5vw, 4rem);
+  }
+  .card--L .card__body {
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: var(--gutter);
     align-items: start;
   }
-  .card--full .card__title {
-    grid-column: 1 / 6;
+  .card--L .card__title {
+    grid-column: 1 / 5;
     font-size: var(--t-1);
   }
-  .card--full .card__loc {
-    grid-column: 1 / 6;
+  .card--L .card__loc {
+    grid-column: 1 / 5;
   }
-  .card--full .card__phrase {
-    grid-column: 7 / -1;
+  .card--L .card__phrase {
+    grid-column: 5 / -1;
     font-size: var(--t-edit);
     line-height: 1.3;
   }
 }
 
-/* ---------- Detalle de proyecto ---------- */
-
-.phero {
+/* Carrusel de proyectos destacados (v1.2) */
+.carousel {
   position: relative;
-  min-height: calc(100svh - var(--header-h));
-  display: flex;
-  align-items: center;
-  background: var(--sombra);
+  margin-inline: var(--x);
   color: var(--blanco);
-  overflow: hidden;
 }
 
-.phero__media {
+.carousel__stage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+@media (min-width: 48rem) {
+  .carousel__stage {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.carousel__slide {
   position: absolute;
   inset: 0;
+  opacity: 0;
+  transition: opacity 700ms var(--ease-std);
 }
 
-.phero__media img,
-.phero__media video {
+.carousel__slide[data-active='true'] {
+  opacity: 1;
+  z-index: 1;
+}
+
+.carousel__slide img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1228,18 +1309,86 @@ html[data-intro='1'] .intro {
   object-position: var(--focal, 50% 50%);
 }
 
-.phero__title {
-  position: relative;
-  margin-inline: var(--x);
-  padding: 0.75rem 0.9rem;
+.carousel__label {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  padding: 0.6rem 0.8rem;
   background: var(--placa);
-  font-size: var(--t-1);
-  max-width: 16ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-ui);
+  letter-spacing: -0.01em;
 }
 
-.phero .frame__tag {
-  left: var(--x);
-  bottom: 1rem;
+.carousel__label small {
+  display: block;
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: var(--t-small);
+  letter-spacing: 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-block: 0.75rem;
+  color: var(--fg);
+  border-bottom: 1px solid var(--line);
+}
+
+.carousel__controls .btn {
+  min-height: 2.5rem;
+}
+
+.carousel__count {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--t-mono);
+  letter-spacing: var(--track-mono);
+  color: var(--fg-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__slide {
+    transition: none;
+  }
+}
+
+.index-lead {
+  padding-block: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.index-lead p {
+  font-family: var(--font-text);
+  font-size: var(--t-edit);
+  line-height: 1.3;
+  max-width: 44ch;
+}
+
+/* ---------- Detalle de proyecto ---------- */
+
+.phero {
+  padding-inline: var(--x);
+}
+
+.phero .frame__box {
+  --ar: 4 / 5;
+}
+
+@media (min-width: 48rem) {
+  .phero .frame__box {
+    --ar: 16 / 9;
+  }
+}
+
+.phero__title {
+  font-size: var(--t-1);
+  max-width: 16ch;
 }
 
 .pintro {
@@ -1270,6 +1419,14 @@ html[data-intro='1'] .intro {
   max-width: 34ch;
 }
 
+.pintro__desc {
+  margin-top: 1rem;
+  font-family: var(--font-text);
+  font-size: var(--t-edit);
+  line-height: 1.35;
+  max-width: 48ch;
+}
+
 .seq {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -1284,9 +1441,27 @@ html[data-intro='1'] .intro {
 
 .seq__half-left,
 .seq__half-right,
-.seq__pair-a,
-.seq__pair-b {
+.seq__wide,
+.seq__half,
+.seq__small {
   grid-column: 1 / -1;
+}
+
+/* Composición por resolución (v1.2): ninguna imagen se muestra por encima de 1.2× su ancho real */
+.seq__comp {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--gutter);
+}
+
+.seq__comp > .frame {
+  grid-column: 1 / -1;
+}
+
+.frame--capped .frame__box {
+  max-width: var(--max-w, none);
 }
 
 .seq__pair {
@@ -1339,6 +1514,48 @@ html[data-intro='1'] .intro {
   }
   .seq__half-right {
     grid-column: 7 / -1;
+  }
+  .seq__wide {
+    grid-column: 1 / 9;
+  }
+  .seq__wide.seq__right {
+    grid-column: 5 / -1;
+  }
+  .seq__half {
+    grid-column: 1 / 7;
+  }
+  .seq__half.seq__right {
+    grid-column: 7 / -1;
+  }
+  .seq__half.seq__center {
+    grid-column: 4 / 10;
+  }
+  .seq__small {
+    grid-column: 1 / 5;
+  }
+  .seq__small.seq__right {
+    grid-column: 9 / -1;
+  }
+  .seq__small.seq__center {
+    grid-column: 5 / 9;
+  }
+  .seq__comp > .comp--wide {
+    grid-column: span 8;
+  }
+  .seq__comp > .comp--half {
+    grid-column: span 6;
+  }
+  .seq__comp > .comp--small {
+    grid-column: span 4;
+  }
+  .seq__comp > .comp--full {
+    grid-column: 1 / -1;
+  }
+  .seq__comp > .comp--right {
+    grid-column-end: -1;
+  }
+  .seq__comp > .comp--offset {
+    margin-top: 3rem;
   }
   .seq__text--left {
     grid-column: 1 / 7;
@@ -1582,7 +1799,7 @@ html[data-intro='1'] .intro {
 /* ---------- Estudio ---------- */
 
 .statement {
-  padding-block: clamp(2.5rem, 7vw, 6rem) clamp(2rem, 5vw, 4rem);
+  padding-block: clamp(3rem, 9vw, 7.5rem) clamp(2.5rem, 6vw, 5rem);
 }
 
 .statement h1 {
@@ -1668,6 +1885,59 @@ html[data-intro='1'] .intro {
   font-family: var(--font-text);
   font-size: var(--t-small);
   color: var(--fg-muted);
+}
+
+/* Proceso de trabajo (v1.2) */
+.process {
+  display: grid;
+  border-top: 1px solid var(--line);
+  counter-reset: paso;
+}
+
+.process li {
+  display: grid;
+  gap: 0.5rem var(--gutter);
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.process h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-2);
+  letter-spacing: var(--track-display);
+}
+
+.process h3::before {
+  counter-increment: paso;
+  content: counter(paso, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: var(--t-mono);
+  letter-spacing: var(--track-mono);
+  color: var(--fg-muted);
+}
+
+.process p {
+  font-family: var(--font-text);
+  max-width: 52ch;
+  line-height: 1.45;
+}
+
+.process small {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-small);
+  color: var(--fg-muted);
+}
+
+@media (min-width: 48rem) {
+  .process li {
+    grid-template-columns: 5fr 7fr;
+  }
 }
 
 /* ---------- Páginas de texto ---------- */

@@ -54,6 +54,9 @@ export const projects: Project[] = [
     shortStatement: 'Jardín, terraza social y alberca bajo encino, sabino, sauce y olivo.',
     summary:
       'Un jardín de sombra alrededor de la alberca. El sauce y el sabino dan la escala; las arbustivas se plantan bajo su dosel para que el jardín cierre con los años.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño y ejecución de paisaje para una residencia en San Pedro Garza García, resuelta en tres áreas: jardín, terraza social y alberca. El sauce y el sabino dan la escala; bajo su dosel se plantaron *Salvia leucantha*, *Salvia greggii*, romero rastrero y jazmín, con cubresuelos de *Ophiopogon japonicus*. Un andador de grava con orilla de acero recorre el jardín. Terminado en mayo de 2023.',
     categories: ['residencial', 'diseno-y-obra', 'construido'],
     status: 'Construido',
     featured: true,
@@ -101,6 +104,9 @@ export const projects: Project[] = [
     shortStatement: 'Muros, escaleras y elementos sólidos fabricados con la piedra del sitio.',
     summary:
       'La piedra que salió de la excavación regresó al jardín como muro, escalera y patio. El material del sitio fija el color del proyecto.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño y ejecución de paisaje para una residencia en San Pedro Garza García. La piedra extraída de la excavación regresó al jardín como muros de contención, escaleras y elementos sólidos, sin pintar ni aplanar, con las juntas a la vista. Pasto, pinos y arbustivas de bajo riego completan el conjunto. Terminado en mayo de 2022.',
     categories: ['residencial', 'diseno-y-obra', 'construido'],
     status: 'Construido',
     featured: true,
@@ -169,6 +175,9 @@ export const projects: Project[] = [
     shortStatement: 'Plan maestro, amenidades en terraza, parque lineal sobre Loma Florida y parque Los Magueyes.',
     summary:
       'Cuatro piezas de paisaje para un conjunto de usos mixtos: el plan maestro, las amenidades en terraza, el parque lineal con banqueta sobre Loma Florida y el parque Los Magueyes.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño arquitectónico de paisaje para un desarrollo habitacional y de usos mixtos en Monterrey. El encargo incluye el plan maestro del conjunto, las amenidades en terraza con espejo de agua, el parque lineal con banqueta sobre Loma Florida y el parque Los Magueyes con cancha y área de juegos. La paleta combina arbolado de *Quercus*, *Ehretia anacua* y *Ebenopsis ebano* con pastos y arbustivas de bajo riego.',
     categories: ['desarrollos', 'parques', 'diseno', 'plan-maestro', 'proyecto'],
     status: 'Proyecto',
     featured: true,
@@ -261,6 +270,9 @@ export const projects: Project[] = [
     shortStatement: 'Jardineras, terrazas y arbolado en altura, del sótano −1 a la terraza del nivel +19.',
     summary:
       'El paisaje de una torre sobre Padre Mier se reparte en cuatro niveles. Cada uno resuelve sustrato, drenaje y especie según la altura y el asoleamiento.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño de paisaje para una torre de usos mixtos sobre Padre Mier, en el centro de Monterrey, en colaboración con Vidal Arquitectos. La intervención se reparte en cuatro niveles, del sótano −1 a la terraza del +19. Cada nivel resuelve profundidad de sustrato, capa drenante y sujeción del arbolado en jardinera antes de elegir la especie.',
     categories: ['desarrollos', 'diseno', 'proyecto'],
     status: 'Proyecto',
     featured: true,
@@ -313,6 +325,9 @@ export const projects: Project[] = [
     shortStatement: 'Un jardín boscoso bajo la sombra del arbolado existente.',
     summary:
       'Los árboles existentes dictan el proyecto. Bajo su sombra densa se propone un jardín boscoso, libre pero estructurado.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño de paisaje residencial para Torre Miravalle, en Monterrey, proyecto ganador de concurso en 2021. El arbolado existente dicta la propuesta: bajo su sombra densa se plantea un jardín boscoso, libre pero estructurado, con especies de semisombra y sombra de bajo mantenimiento como *Trachelospermum asiaticum*, *Dietes iridioides* y *Viburnum suspensum*.',
     categories: ['residencial', 'desarrollos', 'diseno', 'proyecto'],
     status: 'Concurso · proyecto ganador',
     featured: true,
@@ -371,6 +386,9 @@ export const projects: Project[] = [
     shortStatement: 'Paisaje y elementos urbanos para la plaza de acceso. Construido en 2020.',
     summary:
       'Pastos, suculentas y arbustivas de bajo riego para una plaza de acceso a pleno sol. Construido en 2020.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Diseño de paisaje y elementos urbanos para la plaza de acceso del Centro de Convenciones de Reynosa, Tamaulipas, construido en 2020. Pastos, suculentas y arbustivas de bajo riego para un espacio a pleno sol: *Eragrostis curvula*, *Agave ovatifolia*, *Hesperaloe parviflora* y *Leucophyllum frutescens*, con arbolado de encino, palo verde y *Washingtonia robusta*.',
     categories: ['institucional', 'parques', 'diseno', 'construido'],
     status: 'Construido',
     featured: false,
@@ -414,6 +432,9 @@ export const projects: Project[] = [
     shortStatement: 'Plan maestro y paleta vegetal por condición de luz, de pleno sol a sombra.',
     summary:
       'Un modelo de asoleamiento por solsticios y equinoccio decide dónde va cada especie. La paleta se separa en pleno sol, semisombra y sombra.',
+    // PENDIENTE LAND: validar description (borrador a partir del portafolio 2026)
+    description:
+      'Plan maestro y diseño de paisaje corporativo para el back office de Banregio en Monterrey, en desarrollo. Un modelo de asoleamiento por solsticios y equinoccio muestra las horas de luz de cada área ajardinada; con ese dato la paleta se separa en pleno sol, semisombra y sombra y cada especie se coloca donde su desarrollo es correcto.',
     categories: ['corporativo', 'diseno', 'plan-maestro', 'en-desarrollo'],
     status: 'En desarrollo',
     featured: false,

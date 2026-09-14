@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { ProjectsIndex } from '@/components/ProjectsIndex'
-import { publishedProjects } from '@/content/projects'
+import { ProjectCarousel } from '@/components/ProjectCarousel'
+import { featuredProjects, publishedProjects } from '@/content/projects'
 
 export const metadata: Metadata = {
   title: 'Proyectos',
@@ -18,11 +19,17 @@ export default function ProjectsPage() {
     categories: p.categories,
     featured: p.featured,
     hero: p.cover ?? p.hero,
+    gridSize: p.gridSize,
   }))
+  const featured = featuredProjects.map((p) => ({ slug: p.slug, title: p.title, shortTitle: p.shortTitle, location: p.location, cover: p.cover ?? p.hero }))
   return (
     <>
-      <section className="index-intro container" data-header-theme="light">
-        <h1>Jardines residenciales, parques y paisaje corporativo en Monterrey y su zona de influencia. Diseño y obra.</h1>
+      <div style={{ paddingTop: '1rem' }} data-header-theme="light">
+        <h1 className="sr-only">Proyectos</h1>
+        <ProjectCarousel items={featured} />
+      </div>
+      <section className="index-lead container">
+        <p>Jardines residenciales, parques y paisaje corporativo en Monterrey y su zona de influencia. Diseño y obra.</p>
       </section>
       <Suspense fallback={null}>
         <ProjectsIndex projects={data} />

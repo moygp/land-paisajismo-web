@@ -13,11 +13,15 @@ export type MediaAsset = {
   focalPoint?: { x: number; y: number }
 }
 
+export type MediaSize = 'full' | 'wide' | 'half' | 'small'
+
 export type NarrativeBlock =
   | { type: 'text'; body: string; alignment: 'left' | 'right' }
   | { type: 'quote'; quote: string; attribution?: string }
-  | { type: 'media'; layout: 'full' | 'half-left' | 'half-right'; media: MediaAsset }
+  | { type: 'media'; layout: 'full' | 'half-left' | 'half-right'; media: MediaAsset; size?: MediaSize }
   | { type: 'pair'; media: [MediaAsset, MediaAsset]; caption?: string }
+  /** Composición de 2–5 medios con tamaño y desplazamiento propios (manual v1.2 §07). */
+  | { type: 'composition'; caption?: string; items: { media: MediaAsset; size?: MediaSize; offset?: 'left' | 'center' | 'right'; stagger?: boolean }[] }
 
 export type FilterGroupId = 'tipologia' | 'alcance' | 'estado'
 
@@ -29,6 +33,10 @@ export type Project = {
   location: string
   shortStatement: string
   summary: string
+  /** Párrafo descriptivo de apertura de la ficha (60–110 palabras). */
+  description?: string
+  /** Tamaño de tarjeta en el índice; si falta se calcula por resolución del medio. */
+  gridSize?: 'L' | 'M' | 'S'
   categories: string[]
   status?: string
   featured: boolean

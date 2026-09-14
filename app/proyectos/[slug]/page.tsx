@@ -38,16 +38,18 @@ export default async function ProjectPage({ params }: Params) {
   return (
     <article>
       <ProjectCloseMode />
-      <ProjectHero title={p.title} media={p.hero} />
+      <ProjectHero media={p.hero} />
       <div className="pintro grid container">
         <div className="col-4">
-          <p className="pintro__loc">
+          <h1 className="phero__title">{p.title}</h1>
+          <p className="pintro__loc" style={{ marginTop: '1rem' }}>
             {p.location}
             <small>{meta}</small>
           </p>
         </div>
         <div className="col-8">
           <p className="pintro__sum">{renderInline(p.summary)}</p>
+          {p.description && <p className="pintro__desc">{renderInline(p.description)}</p>}
         </div>
       </div>
       <EditorialMediaSequence blocks={p.narrative} />

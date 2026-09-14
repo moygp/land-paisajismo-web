@@ -18,7 +18,8 @@ export const site = {
   phone: '81 1339 3939',
   phoneHref: 'tel:+528113393939',
   email: 'info@landpaisajismo.mx',
-  instagram: { handle: '@land.paisajismo', url: 'https://www.instagram.com/land.paisajismo/' },
+  instagram: { handle: '@land.paisajismo', url: 'https://www.instagram.com/land.paisajismo/', followers: '' }, // PENDIENTE LAND: número de seguidores solo si LAND lo pide; se actualiza a mano
+  linkedin: { url: '' }, // PENDIENTE LAND: URL de LinkedIn
   founded: undefined as string | undefined,
   /** Conceptos de la intro de primera visita. Tomados del manual de identidad v1.1. */
   introConcepts: ['Nombra la planta.', 'Da la medida.', 'Un jardín que madura.'],

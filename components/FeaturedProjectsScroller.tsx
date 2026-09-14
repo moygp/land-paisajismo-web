@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import type { MediaAsset } from '@/content/types'
 import { focalStyle } from '@/lib/utils'
 import { MediaFrame } from './MediaFrame'
+import { VideoFrame } from './VideoFrame'
 
 export type FeaturedItem = {
   slug: string
@@ -62,7 +63,11 @@ export function FeaturedProjectsScroller({ items }: { items: FeaturedItem[] }) {
           (it, i) =>
             i < mounted && (
               <div key={it.slug} className="scroller__bg" data-active={i === active} style={focalStyle(it.cover.focalPoint)} aria-hidden={i !== active}>
-                <Image src={it.cover.src} alt={i === active ? it.cover.alt : ''} fill sizes="100vw" priority={i === 0} quality={82} />
+                {it.cover.type === 'video' ? (
+                  <VideoFrame media={it.cover} />
+                ) : (
+                  <Image src={it.cover.src} alt={i === active ? it.cover.alt : ''} fill sizes="100vw" priority={i === 0} quality={82} />
+                )}
               </div>
             ),
         )}
