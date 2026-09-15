@@ -1,28 +1,33 @@
-import { Archivo, JetBrains_Mono, Newsreader } from 'next/font/google'
+import localFont from 'next/font/local'
 
 /**
- * Familias del manual v1.1, servidas por next/font/google (auto-alojadas en el build, sin peticiones a Google en runtime).
- * Archivo se usa en su eje ancho (wdth 112, manual: 106–118) mediante `font-stretch: 112%` en globals.css.
+ * Sistema tipográfico v1.3 (propuesta, uso gratuito, licencia OFL):
+ * Anybody (ETC) en su eje ancho, wdth 125 — display, la «horizontalidad» del manual con eje nativo.
+ * Fraunces (Undercase Type) con eje óptico, SOFT 0 y WONK 0 — texto; cursiva para nombres botánicos.
+ * Geist Mono (Vercel) — datos, cotas y etiquetas.
+ * Archivos auto-alojados en app/fonts, subconjunto latino, cargados con next/font/local.
  */
-export const archivo = Archivo({
-  subsets: ['latin'],
-  axes: ['wdth'],
+export const archivo = localFont({
+  src: [
+    { path: './fonts/Anybody-wdth125.woff2', weight: '300 800', style: 'normal' },
+    { path: './fonts/Anybody-Italic-wdth125.woff2', weight: '300 800', style: 'italic' },
+  ],
   variable: '--f-archivo',
   display: 'swap',
 })
 
-/** Newsreader con eje óptico; la cursiva se reserva a nombres botánicos. */
-export const newsreader = Newsreader({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  axes: ['opsz'],
+export const newsreader = localFont({
+  src: [
+    { path: './fonts/Fraunces.woff2', weight: '300 600', style: 'normal' },
+    { path: './fonts/Fraunces-Italic.woff2', weight: '300 600', style: 'italic' },
+  ],
   variable: '--f-newsreader',
   display: 'swap',
 })
 
-/** JetBrains Mono para datos, cotas y etiquetas. */
-export const mono = JetBrains_Mono({
-  subsets: ['latin'],
+export const mono = localFont({
+  src: './fonts/GeistMono.woff2',
+  weight: '400 500',
   variable: '--f-mono',
   display: 'swap',
 })

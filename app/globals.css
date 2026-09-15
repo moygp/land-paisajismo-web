@@ -24,9 +24,9 @@
   --placa: rgba(16, 26, 19, 0.55);   /* placa sólida translúcida sobre fotografía */
 
   /* Tipografía (manual §05) */
-  --font-display: var(--f-archivo), 'Helvetica Neue', Arial, sans-serif;
-  --font-text: var(--f-newsreader), Georgia, serif;
-  --font-mono: var(--f-mono), ui-monospace, Menlo, monospace;
+  --font-display: var(--f-archivo), 'Helvetica Neue', Arial, sans-serif;   /* Anybody wdth 125 */
+  --font-text: var(--f-newsreader), Georgia, serif;                        /* Fraunces */
+  --font-mono: var(--f-mono), ui-monospace, Menlo, monospace;              /* Geist Mono */
 
   --t-hero: clamp(2.5rem, 5.4vw, 4.5rem);        /* 40 → 72 (v1.2) */
   --t-1: clamp(1.875rem, 3.4vw, 2.875rem);       /* 30 → 46 */
@@ -107,7 +107,6 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-stretch: 112%; /* Archivo en su eje ancho (manual §05); las otras familias no tienen eje wdth */
   font-family: var(--font-text);
   font-size: var(--t-body);
   line-height: 1.5;
