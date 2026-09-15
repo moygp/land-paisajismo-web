@@ -24,8 +24,22 @@ export default function HomePage() {
   return (
     <>
       <FirstVisitIntro photo={featuredProjects[0].hero} />
-      <StatementHero />
+      <StatementHero photo={featuredProjects[0].hero} />
       <FeaturedProjectsScroller items={items} />
+      <section className="block grid container" data-theme="dark" data-header-theme="verde" aria-labelledby="enfoque-h">
+        <p className="block__eyebrow">Enfoque</p>
+        <h2 id="enfoque-h" className="block__title">
+          Cuarenta grados. Menos de 600 mm de lluvia al año. Suelo calizo.
+        </h2>
+        <div className="block__text">
+          <p>
+            Un jardín que no considere esas tres condiciones se pierde en un verano. LAND parte de ellas: la especie según el asoleamiento de cada área, riego por goteo y documentación hasta el detalle constructivo.
+          </p>
+          <Link href="/enfoque" className="cta lnk">
+            Nuestro enfoque
+          </Link>
+        </div>
+      </section>
       {recent.length > 0 && (
         <section className="section container" data-header-theme="light" aria-labelledby="noticias-h">
           <h2 id="noticias-h" className="h-block">

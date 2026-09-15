@@ -10,7 +10,7 @@ export const contentType = 'image/png'
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
-      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: '#337044', color: '#fff', padding: '72px' }}>
+      <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: '#243D33', color: '#fff', padding: '72px' }}>
         <svg width="640" height="173" viewBox={WORDMARK_VIEWBOX} style={{ marginTop: 60 }}>
           <path d={WORDMARK_PATH} fill="#fff" fillRule="evenodd" />
         </svg>

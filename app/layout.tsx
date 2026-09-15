@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import { archivo, mono, newsreader } from './fonts'
+import { mono, sans, serif } from './fonts'
 import { site } from '@/content/site'
 import { cx } from '@/lib/utils'
 import { HeaderModeProvider } from '@/components/HeaderModeContext'
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#337044',
+  themeColor: '#243D33',
 }
 
 /* Fija html[data-intro] antes del primer render: solo en portada, una vez por sesión, nunca con movimiento reducido. */
@@ -40,7 +40,7 @@ const introScript = `(function(){try{if(location.pathname==='/'&&!sessionStorage
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-MX" className={cx(archivo.variable, newsreader.variable, mono.variable)} suppressHydrationWarning>
+    <html lang="es-MX" className={cx(serif.variable, sans.variable, mono.variable)} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: introScript }} />
       </head>

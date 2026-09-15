@@ -33,25 +33,22 @@ export default async function ProjectPage({ params }: Params) {
   const p = getProject(slug)
   if (!p) notFound()
   const next = nextProject(slug)
-  const meta = [p.typology, p.year, p.status].filter(Boolean).join(' · ')
+  const index = publishedProjects.findIndex((x) => x.slug === slug) + 1
 
   return (
     <article>
       <ProjectCloseMode />
-      <ProjectHero media={p.hero} />
-      <div className="pintro grid container">
-        <div className="col-4">
-          <h1 className="phero__title">{p.title}</h1>
-          <p className="pintro__loc" style={{ marginTop: '1rem' }}>
-            {p.location}
-            <small>{meta}</small>
-          </p>
+      <ProjectHero project={p} index={index} />
+      {p.description && (
+        <div className="pintro grid container">
+          <div className="col-4">
+            <p className="h-block">Descripción</p>
+          </div>
+          <div className="col-8">
+            <p className="pintro__desc">{renderInline(p.description)}</p>
+          </div>
         </div>
-        <div className="col-8">
-          <p className="pintro__sum">{renderInline(p.summary)}</p>
-          {p.description && <p className="pintro__desc">{renderInline(p.description)}</p>}
-        </div>
-      </div>
+      )}
       <EditorialMediaSequence blocks={p.narrative} />
       <ProjectFacts project={p} />
       <NextProject project={next} />

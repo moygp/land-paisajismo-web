@@ -1,6 +1,7 @@
 /* =====================================================================
    LAND · landpaisajismo.mx
-   Tokens derivados del Manual de identidad v1.2 (sep 2026): blanco base, Corteza, hover verde.
+   Tokens del Manual de identidad v2.0 (sep 2026): LAND forest green, sistema editorial
+   Instrument Serif + Inter + Cousine, blanco base, Corteza.
    Una sola estrategia de estilos: CSS global con variables. Sin Tailwind.
    ===================================================================== */
 
@@ -8,7 +9,7 @@
   /* Color · corte de terreno (manual §04) */
   --caliza: #e8e9e3;   /* superficie secundaria: planos, placas claras, franjas (v1.2) */
   --sombra: #101a13;   /* sustituye al negro puro */
-  --verde: #337044;    /* único verde de la marca */
+  --verde: #243d33;    /* LAND · forest green profundo (v2.0). Único verde de la marca */
   --salvia: #a9b7a4;   /* acento sobre oscuro; nunca texto pequeño */
   --piedra: #9a9183;   /* texto secundario grande, líneas técnicas */
   --corteza: #6b7068;  /* texto secundario sobre blanco · 5.2:1 (v1.2) */
@@ -24,21 +25,24 @@
   --placa: rgba(16, 26, 19, 0.55);   /* placa sólida translúcida sobre fotografía */
 
   /* Tipografía (manual §05) */
-  --font-display: var(--f-archivo), 'Helvetica Neue', Arial, sans-serif;   /* Anybody wdth 125 */
-  --font-text: var(--f-newsreader), Georgia, serif;                        /* Fraunces */
-  --font-mono: var(--f-mono), ui-monospace, Menlo, monospace;              /* Geist Mono */
+  --font-serif: var(--f-serif), 'Times New Roman', Georgia, serif;         /* Instrument Serif · editorial */
+  --font-display: var(--f-sans), 'Helvetica Neue', Arial, sans-serif;      /* Inter · capa funcional */
+  --font-text: var(--f-sans), 'Helvetica Neue', Arial, sans-serif;         /* Inter · cuerpo */
+  --font-mono: var(--f-mono), ui-monospace, Menlo, monospace;              /* Cousine · metadatos */
 
-  --t-hero: clamp(2.5rem, 5.4vw, 4.5rem);        /* 40 → 72 (v1.2) */
-  --t-1: clamp(1.875rem, 3.4vw, 2.875rem);       /* 30 → 46 */
-  --t-2: clamp(1.5rem, 2.4vw, 2rem);             /* 24 → 32 */
-  --t-edit: clamp(1.125rem, 1.6vw, 1.5rem);      /* 18 → 24 */
-  --t-ui: clamp(1rem, 1.1vw, 1.125rem);          /* 16 → 18 */
-  --t-body: 1.0625rem;                           /* 17 */
-  --t-small: 0.9375rem;                          /* 15 */
-  --t-mono: 0.6875rem;                           /* 11 */
-  --track-display: -0.02em;                      /* v1.2: más aire, peso 500 */
+  --t-hero: clamp(3.125rem, 9.2vw, 8.125rem);    /* H1 · 50 → 130 · Instrument Serif */
+  --t-1: clamp(2.375rem, 5.6vw, 4.75rem);        /* H2 · 38 → 76 · Instrument Serif */
+  --t-2: clamp(1.75rem, 3.2vw, 2.75rem);         /* Títulos de proyecto · 28 → 44 · Instrument Serif */
+  --t-3: clamp(1.375rem, 2vw, 1.875rem);         /* H3 · 22 → 30 · Inter 500 */
+  --t-edit: clamp(1.1875rem, 1.6vw, 1.5rem);     /* Introducciones · 19 → 24 · Inter */
+  --t-ui: clamp(0.9375rem, 1vw, 1.0625rem);      /* Interfaz · 15 → 17 · Inter 500 */
+  --t-body: 1.0625rem;                           /* Cuerpo · 17 · Inter */
+  --t-small: 0.875rem;                           /* 14 */
+  --t-mono: 0.75rem;                             /* Metadatos · 12 · Cousine */
+  --track-display: -0.035em;                     /* H1 serif */
+  --track-h2: -0.02em;
   --t-hover: 150ms;
-  --track-mono: 0.14em;
+  --track-mono: 0.06em;
 
   /* Retícula (manual §06: doce columnas, margen mínimo 1 X del logotipo) */
   --x: clamp(1.25rem, 1.7vw, 1.5rem);            /* X = altura de mayúscula del wordmark en cabecera */
@@ -64,9 +68,9 @@
 }
 
 [data-theme='dark'] {
-  --bg: var(--sombra);
+  --bg: var(--verde);
   --fg: var(--caliza);
-  --fg-muted: #b9bfb4;
+  --fg-muted: var(--salvia);
   --fg-soft: var(--piedra);
   --line: rgba(255, 255, 255, 0.22);
   background: var(--bg);
@@ -2072,4 +2076,495 @@ a[aria-current='page'] > .lnk::after {
   .cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+
+/* =====================================================================
+   v2.1 · Dirección de arte editorial (sep 2026)
+   Instrument Serif para los momentos editoriales, Inter para la capa
+   funcional, Cousine para metadatos. LAND forest green como gran plano.
+   ===================================================================== */
+
+body {
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+
+h1,
+h2,
+.display,
+.hero__title,
+.statement h1,
+.index-intro h1,
+.card__title,
+.menu__list a,
+.pnext__body h2,
+.pillar__head h2,
+.doc h1,
+.nf h1,
+.news__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: var(--track-h2);
+  line-height: 1;
+  text-wrap: balance;
+}
+
+h1,
+.hero__title,
+.nf h1 {
+  letter-spacing: var(--track-display);
+  line-height: 0.92;
+}
+
+.hero__title,
+.cover__title,
+.nf h1 {
+  font-size: var(--t-hero);
+}
+
+.statement h1,
+.index-intro h1,
+.pnext__body h2,
+.pillar__head h2,
+.doc h1 {
+  font-size: var(--t-1);
+  max-width: 14ch;
+}
+
+.card__title {
+  font-size: var(--t-2);
+  line-height: 1.02;
+}
+
+.card--full .card__title {
+  font-size: var(--t-1);
+}
+
+.menu__list a {
+  font-size: clamp(2.5rem, 9vw, 3.5rem);
+}
+
+.scroller__item a {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  letter-spacing: var(--track-h2);
+  line-height: 1.02;
+}
+
+.scroller__item small {
+  font-family: var(--font-mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  margin-top: 0.3rem;
+}
+
+h3,
+h4,
+.t-ui,
+.btn,
+.nav a,
+.header__menu,
+.header__close,
+.filters__toggle,
+.filters__option,
+.people__tab,
+.statement__links,
+.pillar__list h3,
+.person__name,
+.doc__body h2,
+.facts dd,
+.pintro__loc,
+.hero__meta {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+h3,
+h4,
+.pillar__list h3,
+.doc__body h2 {
+  font-size: var(--t-3);
+  text-wrap: balance;
+}
+
+.pillar__list h3 {
+  font-size: var(--t-ui);
+}
+
+.t-edit,
+.hero__sub,
+.pintro__sum,
+.pintro__desc,
+.seq__text,
+.pillar__statement,
+.prose,
+.pfacts__credits,
+.footer__tagline,
+.card__phrase,
+.pgrid__empty {
+  font-family: var(--font-text);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.pintro__sum,
+.seq__text,
+.pillar__statement,
+.prose,
+.pfacts__credits {
+  font-size: var(--t-edit);
+  line-height: 1.4;
+  max-width: 44ch;
+}
+
+.pintro__desc,
+.doc__body,
+.card__phrase,
+.list-lines li,
+.pillar__list p,
+.contact__row p,
+.contact__row a,
+.footer__col p,
+.footer__col a,
+.menu__foot {
+  font-family: var(--font-text);
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+
+.seq__quote blockquote {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: var(--t-1);
+  line-height: 1.02;
+  letter-spacing: var(--track-h2);
+  max-width: 22ch;
+}
+
+.seq__quote blockquote em,
+.pintro__sum em,
+.seq__text em,
+.doc__body em,
+.list-lines em {
+  font-style: italic;
+}
+
+/* Capa técnica · Cousine */
+.mono,
+.frame__tag,
+.frame__caption,
+.frame__credit,
+.facts dt,
+.h-block,
+.card__loc,
+.news__date,
+.filters__group h2,
+.filters__active,
+.contact__row h2,
+.footer__col h2,
+.footer__legal,
+.pnext__label,
+.pintro__loc small,
+.seq__quote figcaption,
+.pfacts__credits small,
+.list-lines li span,
+.person__role,
+.doc__meta,
+.hero__meta,
+.cover__eyebrow,
+.cover__meta,
+.popen__eyebrow,
+.popen__loc,
+.block__eyebrow,
+.carousel__counter,
+.eyebrow {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: var(--t-mono);
+  letter-spacing: var(--track-mono);
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.frame__caption,
+.frame__credit,
+.pfacts__credits small,
+.seq__quote figcaption,
+.footer__legal,
+.person__role,
+.contact__row p small {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.frame__tag {
+  font-size: 0.6875rem;
+  padding: 0.35rem 0.5rem 0.3rem;
+  background: var(--verde);
+  color: var(--caliza);
+}
+
+.h-block,
+.filters__group h2,
+.contact__row h2,
+.footer__col h2 {
+  color: var(--fg-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Llamadas a la acción: texto + flecha, Inter 500 */
+.cta {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--t-ui);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.cta::after {
+  content: ' \2192';
+  display: inline-block;
+  margin-left: 0.25em;
+  transition: transform var(--t-color) var(--ease-std);
+}
+
+.cta:hover::after,
+.cta:focus-visible::after {
+  transform: translateX(0.2em);
+}
+
+/* Portada editorial */
+.cover {
+  min-height: calc(100svh - var(--header-h));
+  padding-block: clamp(1.5rem, 4vh, 3rem) clamp(2rem, 5vh, 4rem);
+  row-gap: 1.5rem;
+  align-content: start;
+}
+
+.cover__eyebrow {
+  grid-column: 1 / -1;
+  color: var(--fg-muted);
+}
+
+.cover__title {
+  grid-column: 1 / -1;
+  position: relative;
+  z-index: 1;
+  max-width: 11ch;
+  margin-top: 0.5rem;
+}
+
+.cover__media {
+  grid-column: 1 / -1;
+  margin-inline: calc(-1 * var(--x));
+}
+
+.cover__foot {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1rem;
+  align-content: end;
+}
+
+.cover__text {
+  max-width: 34ch;
+  font-size: var(--t-body);
+  line-height: 1.55;
+  color: var(--fg);
+}
+
+.cover__meta {
+  color: var(--fg-muted);
+}
+
+@media (min-width: 48rem) {
+  .cover {
+    grid-template-rows: auto 1fr auto;
+    row-gap: 0;
+  }
+  .cover__eyebrow {
+    grid-row: 1;
+    grid-column: 1 / 8;
+  }
+  .cover__title {
+    grid-row: 2;
+    grid-column: 1 / 9;
+    align-self: start;
+    margin-top: clamp(1rem, 3vh, 2.5rem);
+  }
+  .cover__media {
+    grid-row: 1 / 4;
+    grid-column: 8 / -1;
+    margin-inline: 0 calc(-1 * var(--x));
+    margin-top: clamp(2rem, 8vh, 5rem);
+    align-self: stretch;
+  }
+  .cover__media .frame,
+  .cover__media .frame__box {
+    height: 100%;
+  }
+  .cover__media .frame__box {
+    aspect-ratio: auto;
+    min-height: 60svh;
+  }
+  .cover__foot {
+    grid-row: 3;
+    grid-column: 1 / 6;
+    padding-top: 3rem;
+  }
+}
+
+/* Apertura de proyecto: texto en bloque + fotografía, 5/7 */
+.popen {
+  padding-block: clamp(1.5rem, 4vh, 3rem) clamp(2rem, 5vw, 4rem);
+  row-gap: 1.5rem;
+}
+
+.popen__head,
+.popen__foot,
+.popen__media {
+  grid-column: 1 / -1;
+}
+
+.popen__media {
+  order: 2;
+  margin-inline: calc(-1 * var(--x));
+}
+
+.popen__foot {
+  order: 3;
+  display: grid;
+  gap: 1rem;
+}
+
+.popen__eyebrow {
+  color: var(--fg-muted);
+}
+
+.popen__title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  max-width: 10ch;
+  margin-top: 0.75rem;
+}
+
+.popen__sum {
+  font-family: var(--font-text);
+  font-size: var(--t-edit);
+  line-height: 1.4;
+  max-width: 36ch;
+}
+
+.popen__loc {
+  color: var(--fg-muted);
+}
+
+@media (min-width: 48rem) {
+  .popen {
+    grid-template-rows: auto 1fr;
+    min-height: calc(100svh - var(--header-h));
+  }
+  .popen__head {
+    grid-column: 1 / 6;
+    grid-row: 1;
+  }
+  .popen__foot {
+    grid-column: 1 / 6;
+    grid-row: 2;
+    align-self: end;
+    padding-top: 3rem;
+    padding-right: var(--gutter);
+  }
+  .popen__media {
+    grid-column: 6 / -1;
+    grid-row: 1 / 3;
+    order: 0;
+    margin-inline: 0 calc(-1 * var(--x));
+  }
+  .popen__media .frame,
+  .popen__media .frame__box {
+    height: 100%;
+  }
+  .popen__media .frame__box {
+    aspect-ratio: auto;
+    min-height: 70svh;
+  }
+}
+
+/* Gran plano de color LAND */
+.block {
+  padding-block: clamp(4rem, 12vw, 9rem);
+  row-gap: 2rem;
+}
+
+.block__eyebrow {
+  grid-column: 1 / -1;
+  color: var(--fg-muted);
+}
+
+.block__title {
+  grid-column: 1 / -1;
+  font-size: var(--t-1);
+  max-width: 16ch;
+}
+
+.block__text {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 1.25rem;
+  align-content: end;
+  max-width: 38ch;
+  font-size: var(--t-body);
+  line-height: 1.55;
+}
+
+@media (min-width: 48rem) {
+  .block__title {
+    grid-column: 1 / 9;
+  }
+  .block__text {
+    grid-column: 8 / -1;
+    grid-row: 3;
+  }
+}
+
+[data-theme='dark'] .footer__mark,
+.footer[data-theme='dark'] .footer__mark {
+  color: var(--caliza);
+}
+
+.footer[data-theme='dark'] {
+  border-top: 0;
+}
+
+.scroller {
+  background: var(--verde);
+}
+
+.placa,
+.scroller__list,
+.scroller__actions .btn,
+.phero__title,
+.pnext__label {
+  background: rgba(36, 61, 51, 0.62);
+}
+
+html[data-header='dark'] .header {
+  background: rgba(36, 61, 51, 0.28);
+}
+
+.intro__tint {
+  background: var(--verde);
+  opacity: 0.88;
+}
+
+.hero,
+.hero__title,
+.hero__sub,
+.hero__meta {
+  display: none;
 }

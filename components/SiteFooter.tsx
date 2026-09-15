@@ -6,7 +6,7 @@ import { Wordmark } from './Wordmark'
 export function SiteFooter() {
   const a = site.address
   return (
-    <footer id="contacto" className="footer" data-header-theme="light">
+    <footer id="contacto" className="footer" data-theme="dark" data-header-theme="verde">
       <div>
         <Wordmark className="footer__mark" title="LAND" />
         <p className="footer__tagline">{site.tagline}</p>

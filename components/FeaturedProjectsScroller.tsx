@@ -84,10 +84,10 @@ export function FeaturedProjectsScroller({ items }: { items: FeaturedItem[] }) {
           </ol>
           <div className="scroller__actions">
             <Link className="btn" href="/proyectos">
-              <span className="lnk">Todos los proyectos</span>
+              <span className="lnk cta">Todos los proyectos</span>
             </Link>
             <Link className="btn scroller__view" href={`/proyectos/${current.slug}`}>
-              <span className="lnk">Ver proyecto</span>
+              <span className="lnk cta">Ver proyecto</span>
             </Link>
           </div>
         </div>
